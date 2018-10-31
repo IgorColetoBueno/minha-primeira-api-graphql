@@ -1,0 +1,23 @@
+{
+  "name": "minha-primeira-api-graphql",
+  "version": "1.0.0",
+  "description": "Simple API using GraphQL",
+  "main": "index.ts",
+  "scripts": {
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IgorColetoBueno/minha-primeira-api-graphql.git"
+  },
+  "keywords": [
+    "API",
+    "GraphQL"
+  ],
+  "author": "Igor Bueno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IgorColetoBueno/minha-primeira-api-graphql/issues"
+  },
+  "homepage": "https://github.com/IgorColetoBueno/minha-primeira-api-graphql#readme"
+}
