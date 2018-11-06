@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/app.ts");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.ts");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -91,9 +91,67 @@
   !*** ./src/app.ts ***!
   \********************/
 /*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst express = __webpack_require__(/*! express */ \"express\");\nconst graphqlHTTP = __webpack_require__(/*! express-graphql */ \"express-graphql\");\nconst schema_1 = __webpack_require__(/*! ./graphql/schema */ \"./src/graphql/schema.ts\");\nclass App {\n    constructor() {\n        this.express = express();\n        this.middleware();\n    }\n    middleware() {\n        this.express.use(\"/graphql\", graphqlHTTP({\n            schema: schema_1.default,\n            graphiql: \"development\" == 'development'\n        }));\n    }\n}\nexports.default = new App().express;\n\n\n//# sourceURL=webpack:///./src/app.ts?");
+
+/***/ }),
+
+/***/ "./src/graphql/schema.ts":
+/*!*******************************!*\
+  !*** ./src/graphql/schema.ts ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst graphql_tools_1 = __webpack_require__(/*! graphql-tools */ \"graphql-tools\");\nconst users = [\n    {\n        id: 1,\n        name: 'Jon',\n        email: 'jon@email.com'\n    },\n    {\n        id: 2,\n        name: 'Dany',\n        email: 'dany@email.com'\n    }\n];\nconst typeDefs = `\n    type User{\n        id: ID!,\n        name: String!,\n        email: String!\n    }\n\n    type Query {\n        allUsers: [User!]!\n    }\n`;\nconst resolvers = {\n    Query: {\n        allUsers: () => users\n    }\n};\nexports.default = graphql_tools_1.makeExecutableSchema({ typeDefs, resolvers });\n\n\n//# sourceURL=webpack:///./src/graphql/schema.ts?");
+
+/***/ }),
+
+/***/ "./src/index.ts":
+/*!**********************!*\
+  !*** ./src/index.ts ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst app_1 = __webpack_require__(/*! ./app */ \"./src/app.ts\");\napp_1.default.listen(3000, () => {\n    console.log(\"Deu certo!\");\n});\napp_1.default.get('/teste', (req, res) => {\n    res.send(\"Teste\");\n});\n\n\n//# sourceURL=webpack:///./src/index.ts?");
+
+/***/ }),
+
+/***/ "express":
+/*!**************************!*\
+  !*** external "express" ***!
+  \**************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("console.log(\"E agora?!!\");\r\nconsole.log(\"Teste\");\r\nconsole.log(\"Teste\");\r\nconsole.log(\"Teste\");\r\n\n\n//# sourceURL=webpack:///./src/app.ts?");
+eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///external_%22express%22?");
+
+/***/ }),
+
+/***/ "express-graphql":
+/*!**********************************!*\
+  !*** external "express-graphql" ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"express-graphql\");\n\n//# sourceURL=webpack:///external_%22express-graphql%22?");
+
+/***/ }),
+
+/***/ "graphql-tools":
+/*!********************************!*\
+  !*** external "graphql-tools" ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"graphql-tools\");\n\n//# sourceURL=webpack:///external_%22graphql-tools%22?");
 
 /***/ })
 

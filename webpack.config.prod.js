@@ -1,33 +1,35 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const webpack = require('webpack');
+const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
+const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
-    mode: 'production',
-    entry: {
-        app: './src/app.ts'
-    },
-    devtool: 'inline-source-map',
-    devServer: {
-        contentBase: './dist',
-        hot: true
-    },
-    plugins: [
-        new CleanWebpackPlugin(['dist']),
-        new webpack.HotModuleReplacementPlugin()
-    ],
+    entry: './src/index.ts',
+    mode: "production",
     module: {
         rules: [{
-            test: /\.tsx?$/,
+            test: /\.ts?$/,
             use: 'ts-loader',
             exclude: /node_modules/
         }]
     },
+    plugins: [
+        new CleanWebpackPlugin(['dist'])
+    ],
+    optimization:{
+        minimizer:[new UglifyWebpackPlugin()]
+    },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js']
+        extensions: ['.ts', '.js']
     },
     output: {
-        filename: 'bundle.js',
+        filename: 'index.js',
         path: path.resolve(__dirname, 'dist')
+    },
+    target:'node',
+    externals:[nodeExternals()],
+    node:{
+        __dirname:false,
+        __filename:false
     }
 };
